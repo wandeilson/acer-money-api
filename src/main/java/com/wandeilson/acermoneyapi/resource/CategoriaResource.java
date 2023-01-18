@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +34,7 @@ public class CategoriaResource {
 	}
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
-	public ResponseEntity<Categoria> criar (@RequestBody Categoria categoria, HttpServletResponse response) {
+	public ResponseEntity<Categoria> criar (@Valid  @RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria catSalva = categoriaRepository.save(categoria);
 		//Utilizado p informar onde (url) foi salvo o novo registro. A info vai junto a response
 		//no 'location' do Header
