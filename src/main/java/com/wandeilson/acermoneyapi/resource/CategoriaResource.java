@@ -33,7 +33,7 @@ public class CategoriaResource {
 	}
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
-	public ResponseEntity<Categoria> salvar (@RequestBody Categoria categoria, HttpServletResponse response) {
+	public ResponseEntity<Categoria> criar (@RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria catSalva = categoriaRepository.save(categoria);
 		//Utilizado p informar onde (url) foi salvo o novo registro. A info vai junto a response
 		//no 'location' do Header
@@ -44,8 +44,9 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).body(catSalva);
 	}
 	@GetMapping("/{codigo}")
-	public Categoria buscarPeloCodigo(@PathVariable Long codigo) {
-		return categoriaRepository.findOne(codigo);
+	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
+		Categoria categoria = categoriaRepository.findOne(codigo);
+		return categoria != null ? ResponseEntity.ok(categoria) : ResponseEntity.notFound().build();
 	}
 	
 	
