@@ -17,6 +17,7 @@ public class Pessoa {
 	
 	@NotNull
 	private String nome;
+	
 	@NotNull
 	private boolean ativo;
 	
