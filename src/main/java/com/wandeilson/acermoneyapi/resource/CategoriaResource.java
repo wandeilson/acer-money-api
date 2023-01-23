@@ -31,7 +31,6 @@ public class CategoriaResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
-	
 	@GetMapping //todos GET enviados para esse endereço irão cair aqui
 	public List<Categoria> listar (){
 		return categoriaRepository.findAll();
@@ -45,6 +44,7 @@ public class CategoriaResource {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, catSalva.getCodigo()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(catSalva);
+		
 	}
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
