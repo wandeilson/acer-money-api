@@ -25,6 +25,7 @@ import com.wandeilson.acermoneyapi.event.RecursoCriadoEvent;
 import com.wandeilson.acermoneyapi.exceptionhandler.AcerMoneyExceptionHandler.Erro;
 import com.wandeilson.acermoneyapi.model.Lancamento;
 import com.wandeilson.acermoneyapi.repository.LancamentoRepository;
+import com.wandeilson.acermoneyapi.repository.filter.LancamentoFilter;
 import com.wandeilson.acermoneyapi.service.LancamentoService;
 import com.wandeilson.acermoneyapi.service.exception.PessoaInexistenteOuInativaException;
 @RestController
@@ -46,8 +47,8 @@ public class LancamentoResource {
 	
 	@GetMapping()
 	@ResponseStatus(HttpStatus.OK)
-	public List<Lancamento> listar(){
-		return lancamentoRepository.findAll();
+	public List<Lancamento> pesquisar(LancamentoFilter lancametoFilter){
+		return lancamentoRepository.filtrar(lancametoFilter);
 	}
 	
 	@GetMapping("/{codigo}")
