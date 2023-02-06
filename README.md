@@ -1,1 +1,1 @@
-# Sistema para gerenciamento de finanças, com Angular e Spring Boot.
+# Back-end (Spring boot) de uma aplicação de gerenciamento financeiro
