@@ -25,8 +25,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("angular")
                 .secret("@ngul@r0")
                 .scopes("read","write")
-                .authorizedGrantTypes("password")//password flow. Aplicação angular vai ter acesso ao usuario e senha
-                .accessTokenValiditySeconds(1800);
+                .authorizedGrantTypes("password", "refresh_token")//password flow. Aplicação angular vai ter acesso ao usuario e senha
+                .accessTokenValiditySeconds(20)
+                .refreshTokenValiditySeconds(3600 * 24);
     }
 
     @Override
@@ -34,6 +35,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints
                 .tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())
+                .reuseRefreshTokens(false)
                 .authenticationManager(authenticationManager);
     }
 
